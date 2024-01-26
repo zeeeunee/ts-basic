@@ -1,36 +1,27 @@
-//Generic
-//공통된 규칙인데 호출할때 들어갈 자료형을 매번 산정하기 어려울때
-//일일이 타입을 따로 지정하는것이 비효율적이므로 타입지정을 호출할떄 지정하는 틀
+//객체로 구성된 배열의 타입
 
-//아래같은 경우는 배열의 들어가는 자료값이 일정하지 않으므로 똑같은 구조임에도불구하고
-//타입에 따른 함수를 여러개 복사해야 되는 번거로움
-const getLength = (arr: number[]) => {
-	return arr.length;
+//개별객체의 타입인 interface지정
+interface Student {
+	name: string;
+	age: number;
+	isFemale: boolean;
+	address?: string;
+}
+
+//각각의 Interface로 구성된 타입을 지정 (실무에서 가장 많이 쓰이는 패턴 DB나 API에서 데이터 가져올떄)
+const classInfo: Student[] = [
+	{ name: 'David', age: 20, isFemale: false, address: 'Seoul' },
+	{ name: 'Michael', age: 30, isFemale: false },
+	{ name: 'Jula', age: 32, isFemale: true },
+];
+
+//단순 문자타입으로 구성된 배열
+const names: string[] = ['red', 'green', 'blue'];
+
+const getArrayInfo = <t>(arr: t[]) => {
+	console.log(arr);
 };
 
-const getLength2 = (arr: string[]) => {
-	return arr.length;
-};
-
-//any타입으로 지정함으로서 위의 문제점 해결
-const getAnyLength = (arr: any[]) => {
-	return arr.length;
-};
-
-//any타입을 지정하면 정상적이지 못한 값이 들어와도 컴파일시 에러잡지 못함
-const numbers = [1, 2, 3, 4, 5];
-const letters = ['a', 'b', 'c'];
-const weired = [false, 3, '3'];
-getAnyLength(numbers);
-getAnyLength(letters);
-getAnyLength(weired);
-
-//generic으로 호출시 상세타입을 파라미터로 전달
-const getGenericLength = <t>(arr: t[]) => {
-	return arr.length;
-};
-
-//함수호출시 미리 지정한 경로 타입을 전달하는 구조
-getGenericLength<string>(['a', 'b']);
-getGenericLength<number>([1, 2]);
-getGenericLength<number | string>([1, '2']);
+//제네릭으로 인터페이스도 타입으로 전달해서 호출 가능 (해당 패턴을 제일 많이 사용)
+getArrayInfo<Student>(classInfo);
+getArrayInfo<string>(names);
