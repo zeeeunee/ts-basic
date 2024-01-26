@@ -14,7 +14,7 @@ form === null || form === void 0 ? void 0 : form.addEventListener('submit', (e) 
         return alert('할일을 입력하세요.');
     const newTask = {
         id: performance.now(),
-        title: input === null || input === void 0 ? void 0 : input.value,
+        title: (input === null || input === void 0 ? void 0 : input.value) || '',
         createAt: new Date(),
         complete: false,
     };
@@ -39,9 +39,10 @@ function addListItem(task) {
     }
     else {
         item.style.textDecoration = 'none';
-        checkbox.checkded = false;
+        checkbox.checked = false;
     }
     checkbox.addEventListener('change', () => {
+        var _a;
         task.complete = checkbox.checked;
         if (task.complete) {
             item.style.textDecoration = 'line-through';
@@ -49,20 +50,25 @@ function addListItem(task) {
             button.innerText = '삭제';
             item.append(button);
             button.addEventListener('click', (e) => {
+                var _a;
                 const del_id = task.id;
                 tasks = tasks.filter((el) => el.id !== del_id);
                 saveTasks();
-                e.currentTarget.parentElement.remove();
+                //타입스크립트에서는 event객체안쪽의 property를 읽지 못하는 버그
+                //해결방법: 해당 이벤트 객체를 변수로 옮겨담고 직접 타입 지정
+                const eventTarget = e.currentTarget;
+                (_a = eventTarget.parentElement) === null || _a === void 0 ? void 0 : _a.remove();
             });
         }
         else {
             item.style.textDecoration = 'none';
-            item.querySelector('button').remove();
+            (_a = item.querySelector('button')) === null || _a === void 0 ? void 0 : _a.remove();
         }
         saveTasks();
     });
-    item.prepend(checkbox, task.title);
-    list.append(item);
+    const newText = task.title;
+    item.prepend(checkbox, newText);
+    list === null || list === void 0 ? void 0 : list.append(item);
 }
 function saveTasks() {
     localStorage.setItem('TASKS', JSON.stringify(tasks));
