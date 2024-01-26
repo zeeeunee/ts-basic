@@ -1,24 +1,17 @@
-//기본 타입
-let txt = 'hello';
-let num = 0;
-let isFemale = false;
-//참조형타입
-let likes = ['game', 'music', 'movie'];
-let unlikes = ['study', 'sports', 'homework'];
-let odd = [1, 3, 5];
-let even = [2, 4, 6];
-//tuple: 배열의 들어갈 타입을 개별적으로 지정
-let combined = [3, 'homework', false];
-//유니온타입으로 들어갈수 있는 자료형을 복수개 지정
-let random = [4, '5', '3', 7];
-let student1 = {
-    name: 'David',
-    age: 20,
-    isFemale: false,
-    address: 'seoul',
+//리턴값이 있는 함수면 파라미터뒤에 리턴값의 타입지정가능
+//리턴값이 없으면 리턴값의 타입을 void지정
+//일반적으로 인수가 제대로 전달되면 리턴값이 잘못나올리가 없고
+//리턴으로 에러가 잡혀봤자 이미 에러가 난 상황이기 때문에 return에 타입지정이 무의미
+const plus = (n1, n2) => {
+    //console.log(n1 + n2);
+    return n1 + n2;
 };
-let student2 = {
-    name: 'Emily',
-    age: 30,
-    isFemale: true,
+const minus = (n1, n2) => {
+    return n1 - n2;
+};
+const multiply = (n1, n2) => {
+    return n1 * n2;
+};
+const divider = (n1, n2) => {
+    return n1 / n2;
 };
