@@ -2,29 +2,24 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Document</title>
-  <script src="main.js"></script>
+  <script defer src="origin.js"></script>
+  <!-- <script src="main.js"></script> -->
 </head>
 
 <body>
+  <form id="form">
+    <input type="text" id="title" placeholder="오늘할일" />
+    <button type="submit">add</button>
+  </form>
 
+  <ul id="list">
+    <!-- <li>
+        <input type="check"> 할일내용
+      </li> -->
+  </ul>
 </body>
 
 </html>
-
-
-<!-- 
-  Javascript의 한계점
-  - Java, C와 같은 컴파일언어에는 변수에 자료를 대입할때 자료형마다의 타입을 지정가능하지만 자스는 불가능
-  - 자료타입에 대해 관대하므로 추후 런타임단에서 코드 실행시 오류가 발생할 확률이 높음 (문법이 Strict하지 못함)
-  - Interperter언어의 한계상 개발시 미쳐오류를 확인하지 못하고 배포시 클라이언트가 오류를 접하게 됨
-  - 컴파일 과정이 없기 때문에 대형서비스 개발시 예기치못한 오류로 큰 문제 발생가능
-  Typescript의 이점
-  - 자료형마다 Strict하게 타입을 지정가능
-  - 컴파일 단계를 거치기 때문에 왠만한 오류는 런타임아닌 컴파일시 발견 가능
-  - 코드 개발시 오류가 발생했을때 타입에 에러를 띄워주기 때문에 즉각적으로 오류발견 가능
-
-  브라우저는 타입스크립트를 해석할수 없기때문에 개발시에는 타입스크립트로 작업하되 JS로 다시 변환해서 브라우저 연결
--->
