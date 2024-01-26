@@ -1,30 +1,30 @@
-//객체로 구성된 배열의 타입
+//제네릭에서 interface 확장하기
+//이미 특정 interface가 파라미터로 적용되어 있는 상태에서
+//특정 상황에서만 다른 interface의 기능을 빌려와서 임시로 타입을 확장해서 호출하고 싶을때 사용
+//굳이 interface를 고치긴 번거롭고 확장해야 되는 기능이 복잡할때
 
-//개별객체의 타입인 interface지정
 interface Student {
 	name: string;
 	age: number;
-	isFemale: boolean;
-	address?: string;
 }
 
-//각각의 Interface로 구성된 타입을 지정 (실무에서 가장 많이 쓰이는 패턴 DB나 API에서 데이터 가져올떄)
-const classInfo: Student[] = [
-	{ name: 'David', age: 20, isFemale: false, address: 'Seoul' },
-	{ name: 'Michael', age: 30, isFemale: false },
-	{ name: 'Jula', age: 32, isFemale: true },
-];
+interface Abroad {
+	nation: string;
+	period: number;
+}
 
-//단순 문자타입으로 구성된 배열
-const names: string[] = ['red', 'green', 'blue'];
-const names2: number[] = [1, 2, 3];
-
-const getArrayInfo = <t>(arr: t[]) => {
-	console.log(arr);
+const fetchData = <t>(info: t[]) => {
+	console.log(info);
 };
 
-//제네릭으로 인터페이스도 타입으로 전달해서 호출 가능 (해당 패턴을 제일 많이 사용)
-getArrayInfo<Student>(classInfo);
-getArrayInfo<string>(names);
-//아래처럼 우리 함수에서 의도한 값이랑 다른값이 들어올떄 generic을 해서 오류파악 가능
-getArrayInfo<string>(names2);
+//특정 interface형식으로 배열값이 전달될때 (DB, API data)
+const info1 = [
+	{ name: 'David', age: 30, period: 40 },
+	{ name: 'David', age: 30, period: 40 },
+	{ name: 'David', age: 30, period: 40 },
+];
+
+//generic으로 인터페이스 활용하는 사례
+//범용적으로 배열로 묶여있는 객체데이터를 활용하는 (Component)
+//특정 데이터 카테고리 외의 값이 전달시 에러나게 할때 Generict 특정 데이터의 인터페이스 전달
+fetchData<Student>(info1);
