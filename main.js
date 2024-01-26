@@ -1,12 +1,6 @@
 const plus = (n1, n2) => {
-    return n1 + n2;
+    console.log(n1);
+    console.log(n2);
 };
-const minus = (n1, n2) => {
-    return n1 - n2;
-};
-const multiply = (n1, n2) => {
-    console.log(n1 * n2);
-};
-const divider = (n1, n2) => {
-    return n1 / n2;
-};
+plus(2, 3, 4, 5);
+plus(1, 2);
