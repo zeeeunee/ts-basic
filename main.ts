@@ -6,6 +6,10 @@ const test = (n1: number, n2: number, n3?: number): number => {
 	return result;
 };
 
-console.log(test(1, 2));
+//위의 함수의 예외처리를 아래와 같이 간결하게 처리
+const test2 = (n1: number, n2: number, n3?: number): number => {
+	const result = n1 + n2 + (n3 || 0);
+	return result;
+};
 
-//파라미터에서 타입을 optional이나 유니온타입을 지정하더라도 없을 수도 있는 값을 코드 안쪽에서 예외처리하지 않으면 컴파일 에러발생
+console.log(test2(1, 2));
