@@ -1,11 +1,9 @@
-//type 주로 쓰는 경우
-//1. 기존 객체타입의 property의 추가가 아닌, 서로 다른 객체를 합쳐서 새로운 타입을 만들때
-//2. 객체가 아닌 일반 자료형인데
-let student1 = {
-    name: 'Emily',
-    age: 30,
-    isFemale: true,
+//특정 파라미터값을 optional처리시 type의 오류는 넘어갈 수 있지만
+//optional처리한 값을 코드 내부적으로 예외처리하지 않으면 에러가 발생
+const test = (n1, n2, n3) => {
+    //const result = n1 + n2 + n3;
+    const result = n3 === undefined ? n1 + n2 : n1 + n2 + n3;
+    return result;
 };
-const test = (info) => {
-    console.log(info);
-};
+console.log(test(1, 2));
+//파라미터에서 타입을 optional이나 유니온타입을 지정하더라도 없을 수도 있는 값을 코드 안쪽에서 예외처리하지 않으면 컴파일 에러발생
